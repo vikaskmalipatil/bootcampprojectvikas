@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="pro.css">
+</head>
+<body>
+    <header>
+        <h1 >Welcome to <span>My website</span> </h1>
+        <h3>Advance HTML,CSS & JS Example</h3>
+    </header>
+
+    <div><p>Click me to change my color! Thins is a <b>more challenging</b> HTML page for student. Famous quote:"Learning never exhausts the mind."
+    Code Example:console.log("Hello world) <i>"The best way to predict the future is to create it"</i>-Abraham Lincoln</p>
+    <img id="pho" src="mypicture.jpg" alt="Dummy Image"></div>
+
+
+
+
+    <div>
+      <h1>Student Data Table</h1>
+      <table id="table">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Course</th>
+        </tr>
+      </table>
+    </div>
+    <script>
+           const gettable=document.getElementById("table");
+           const accessdata= async()=>{
+            try{
+              const response=await fetch("./pro.json");
+                  const data=await response.json();
+
+                  data.forEach(el=> {
+                               const row=gettable.insertRow();
+
+                               const name=row.insertCell(0);
+                               const age=row.insertCell(1);
+                               const course=row.insertCell(2);
+                            
+                               name.textContent=el.name;
+                               age.textContent=el.age;
+                               course.textContent=el.course;
+                  });
+          }
+          catch(err){
+          console.log("error",err);
+          }
+          };    
+           
+           accessdata();
+</script>
+
+
+
+
+
+    <div >
+        <h1>Top skill</h1>
+        <ul>
+        <li>HTML</li>
+        <ul>
+            <li>Tags</li>
+            <li>Attributes</li>
+            <li>Forms</li>
+        </ul>
+        <li>CSS</li>
+        <ul>
+            <li>Selector</li>
+            <li>Box Model</li>
+            <li>positioning</li>
+        </ul>
+        <li>Javascript</li>
+        <ul>
+            <li>DOM</li>
+            <li>Events</li>
+            <li>Function</li>
+        </ul>
+       
+        
+    </ul>
+    <ul ><li id="u"></li></ul>
+
+
+
+    <input type="text"  id="inp" placeholder="Enter new skill" >
+    <button type="submit">Add Skill</button>
+      
+ </div>
+
+
+    <script>
+        const u=document.getElementById("u");
+        const btn=document.getElementsByTagName("button")
+        const imp=document.getElementById("inp");
+        btn[0].addEventListener("click",()=>{
+            const li=document.createElement("li");
+            li.textContent=imp.value;
+            u.appendChild(li);
+        });
+        
+    
+    </script>
+
+    
+<div class="form1"><h2>Contact Form</h2>
+    <form action="#" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text"  name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email"  name="email" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+        
+<div>
+    <h1>Fun Zone</h1>
+    <button onclick="changecolour()">Change colour</button>
+</div>
+<script>
+    function changecolour(){
+        document.body.style.backgroundColor="pink";
+    }
+</script>
+</body>
+</html>
