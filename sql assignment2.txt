@@ -1,0 +1,23 @@
+create table student(
+  id integer,
+  name varchar,
+  age integer,
+  course varchar
+);
+
+insert into student values (1,"Amit sharma",20,"computer science");
+
+
+insert into student values (2, "Priya Singh", 22, "Information Technology");
+
+insert into student values (3, "Ravi Kumar",19, "Electronics");
+insert into student values (4, "Neha Verma",21, "Mechanical");
+insert into student values (5, "Sohan Lal",23, "Civil Engineering");
+
+UPDATE student
+SET course="Mechnacial"
+WHERE id=3;
+
+delete from student where name="Ravi Kumar";
+
+select * from student;
