@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+        <div id="imageContainer"></div>
+        <script>
+        for (let i = 5; i <=14; i++) {
+            const img = document.createElement('img');
+            img.src = `https://via.assets.so/movie.png?id=${i}&q=95&w=360&h=360&fit=fill`;
+            img.alt = "image not found";
+            imageContainer.append(img);
+
+        }
+        </script>
+</body>
+
+</html>
