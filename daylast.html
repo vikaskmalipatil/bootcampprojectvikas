@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Management Assessment</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #2196F3;
+        padding: 15px;
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    .container {
+        padding: 20px;
+    }
+    h2 {
+        margin-top: 0;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 8px 16px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        opacity: 0.9;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    tr:hover {
+        background-color: lightgray;
+    }
+</style>
+</head>
+<body>
+
+<header>Student Management Assessment</header>
+
+<div class="container">
+    <h2>Actions</h2>
+    <button onclick="toggleBackground()">Change Background Color</button>
+    <button onclick="toggleTable()">Hide/Show Table</button>
+    <button onclick="sortByName()">Sort by Name</button>
+    <button onclick="showAgeAbove20()">Show Age > 20</button>
+    <button onclick="resetTable()">Reset Table</button>
+
+    <h2>Student List</h2>
+    <div id="tableContainer"></div>
+</div>
+
+<script>
+const students = [
+    { name: "Amit Sharma", age: 19, course: "B.Tech" },
+    { name: "Priya Verma", age: 22, course: "MCA" },
+    { name: "Rohit Gupta", age: 20, course: "BCA" },
+    { name: "Neha Singh", age: 23, course: "B.Sc" },
+    { name: "Karan Patel", age: 18, course: "B.Com" }
+];
+
+let isBlue = false;
+let tableVisible = true;
+let currentData = [...students];
+
+function renderTable(data) {
+    const container = document.getElementById("tableContainer");
+    container.innerHTML = "";
+
+    const table = document.createElement("table");
+
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    ["Name", "Age", "Course"].forEach(text => {
+        const th = document.createElement("th");
+        th.textContent = text;
+        headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    data.forEach(student => {
+        const row = document.createElement("tr");
+        Object.values(student).forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            row.appendChild(td);
+        });
+        tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+
+    container.appendChild(table);
+}
+
+function toggleBackground() {
+    document.body.style.backgroundColor = isBlue ? "#f8f9fa" : "#e0f7fa";
+    isBlue = !isBlue;
+}
+
+function toggleTable() {
+    tableVisible = !tableVisible;
+    document.getElementById("tableContainer").style.display = tableVisible ? "block" : "none";
+}
+
+function sortByName() {
+    currentData.sort((a, b) => a.name.localeCompare(b.name));
+    renderTable(currentData);
+}
+
+function showAgeAbove20() {
+    currentData = students.filter(s => s.age > 20);
+    renderTable(currentData);
+}
+
+function resetTable() {
+    currentData = [...students];
+    renderTable(currentData);
+}
+
+// Initial render
+renderTable(students);
+</script>
+
+</body>
+</html>
